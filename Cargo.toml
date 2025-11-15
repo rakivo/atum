@@ -1,0 +1,33 @@
+[package]
+name = "atum"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["Mark Tyrkba <marktyrkba456@gmail.com>"]
+description = "Lock-free bidirectional Atom Table, optimized for multi-threaded workloads"
+repository = "https://github.com/rakivo/atum"
+homepage = "https://github.com/rakivo/atum"
+documentation = "https://docs.rs/atum"
+readme = "README.md"
+keywords = ["atom", "string-intern", "concurrent", "lock-free"]
+categories = ["data-structures", "concurrency"]
+
+[features]
+default = []
+tracy = ["dep:tracy-client"]
+
+[dependencies]
+dashmap       = { version = "6.1.0",  default-features = false, features = ["inline"], optional = false }
+ecow          = { version = "0.2.6",  default-features = false, features = ["std"],    optional = false }
+nohash-hasher = { version = "0.2.0",  default-features = false, features = ["std"],    optional = false }
+papaya        = { version = "0.2.3",  default-features = false, features = [],         optional = false }
+rustc-hash    = { version = "2.1.1",  default-features = false, features = ["std"],    optional = false }
+tracy-client  = { version = "0.17.3", default-features = false, features = [],         optional = true  }
+
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "atum"
+path = "benches/atum.rs"
+harness = false

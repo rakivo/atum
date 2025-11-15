@@ -1,0 +1,21 @@
+[package]
+name = "atum-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.atum]
+path = ".."
+
+[[bin]]
+name = "atum"
+path = "fuzz_targets/atum.rs"
+test = false
+doc = false
+bench = false
